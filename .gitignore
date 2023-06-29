@@ -1,0 +1,10 @@
+# ignore all .swp files
+*.swp
+
+# ignore all .txt files
+*.txt
+
+*.swm
+*.swn
+*.swo
+
