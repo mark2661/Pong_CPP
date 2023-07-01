@@ -143,7 +143,6 @@ void Game::run()
     this->processInputs();
     // check/handle if player bat has collided with the edge of the screen
     this->batBoundaryCollisionCheck();
-
     // move ball and check/handle collisions
     this->moveBall();
 }
