@@ -95,6 +95,33 @@ void Game::moveBall()
     ballBoundaryCollisionCheck();
 }
 
+void Game::moveAI()
+{
+    positionVector ballPosition = {ball.centreX(), ball.centreY()};
+    positionVector AI_batPosition = {player2.bat.centreX(), player2.bat.centreY()};
+
+    // calculate point of intersection
+    float lambda = (AI_batPosition.x - ballPosition.x) / ball.velocity.x; // may need to normalise ball velocity 
+    float gamma = ballPosition.y + (lambda*ball.velocity.y) - AI_batPosition.y;
+
+    positionVector intersectionPoint;
+    intersectionPoint.x = AI_batPosition.x;
+    intersectionPoint.y = AI_batPosition.y + gamma; 
+
+    int updateValue = 10;
+
+    if (player2.bat.top() > intersectionPoint.y)
+    {
+        player2.updatePlayerBatPosition(-updateValue);
+    }
+
+    else if (player2.bat.bottom() < intersectionPoint.y)
+    {
+        player2.updatePlayerBatPosition(updateValue);
+    }
+    
+}
+
 void Game::resetBall()
 {
     int y = rand() % this->screenHeight;
@@ -141,6 +168,7 @@ void Game::run()
 {
     // process keyboard input
     this->processInputs();
+    this->moveAI();
     // check/handle if player bat has collided with the edge of the screen
     this->batBoundaryCollisionCheck();
     // move ball and check/handle collisions

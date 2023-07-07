@@ -11,6 +11,12 @@
 #include "Ball.hpp"
 #include "LTexture.hpp"
 
+struct positionVector {
+    float x;
+    float y;
+
+};
+
 class Game
 {
     private:
@@ -31,6 +37,7 @@ class Game
         void batBoundaryCollisionCheck();
         void ballBoundaryCollisionCheck();
         void moveBall();
+        void moveAI();
         void resetBall();
         void renderFrame(SDL_Renderer* renderer, TTF_Font* font);
         void run();

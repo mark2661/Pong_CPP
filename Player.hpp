@@ -3,10 +3,9 @@
 #include "Bat.hpp"
 
 class Player{
-    private:
-        Uint8 score = 0;
 
     public:
+        Uint8 score = 0;
         Bat bat;
 
         Player();
