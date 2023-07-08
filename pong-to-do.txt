@@ -1,3 +1,0 @@
-Fix getNormalVector method
-compare pong tutorial
-
