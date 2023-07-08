@@ -1,6 +1,7 @@
 #include "Game.hpp"
 #include <stdlib.h>
 #include <string>
+#include <cstdlib>
 
 #ifndef PAD
 #define PAD 50
@@ -100,7 +101,9 @@ void Game::moveAI()
     positionVector ballPosition = {ball.centreX(), ball.centreY()};
     positionVector AI_batPosition = {player2.bat.centreX(), player2.bat.centreY()};
 
-    // calculate point of intersection
+    // Calculate point of intersection
+    // Position_Ball + lambda*Velocity_Ball = Position_Bat + gamma*Velocity_Bat
+    // Velocity_Bat can be simplified to the unit vector {0, 1}
     float lambda = (AI_batPosition.x - ballPosition.x) / ball.velocity.x; // may need to normalise ball velocity 
     float gamma = ballPosition.y + (lambda*ball.velocity.y) - AI_batPosition.y;
 
@@ -109,15 +112,18 @@ void Game::moveAI()
     intersectionPoint.y = AI_batPosition.y + gamma; 
 
     int updateValue = 10;
+    int multiplicationFactors[2] = {1, -1};
+    int index = (std::rand() / RAND_MAX) + 1;
+    int error = std::rand() % 12 * multiplicationFactors[index];
 
     if (player2.bat.top() > intersectionPoint.y)
     {
-        player2.updatePlayerBatPosition(-updateValue);
+        player2.updatePlayerBatPosition(-1 * updateValue + error);
     }
 
     else if (player2.bat.bottom() < intersectionPoint.y)
     {
-        player2.updatePlayerBatPosition(updateValue);
+        player2.updatePlayerBatPosition(updateValue + error);
     }
     
 }
