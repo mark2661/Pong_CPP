@@ -2,7 +2,6 @@
 A simple pong game made using SDL2 and C++\
 ![](./data/pong_recording_slow.gif)\
 ## What I Learned
-* Simple geometry rendering using SDL2
-* Text rendering using SDL2
+* Simple geometry and text rendering using [SDL2](https://www.libsdl.org/)
 * Object oriented design in C++
 
